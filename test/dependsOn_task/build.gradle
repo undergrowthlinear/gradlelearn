@@ -1,0 +1,16 @@
+task say(dependsOn: 'hello') << {
+	println "say"
+}
+
+task hello << {
+	print "hello "
+}
+
+task what << {
+	print "what "
+}
+
+task listen(dependsOn: what) << {
+	println "listen"
+}
+

@@ -1,0 +1,19 @@
+task hello << {
+	println "hello"
+}
+
+hello.doFirst{
+	println "First"
+}
+
+hello.doFirst{
+	println "Second,$hello.name"
+}
+
+hello.doLast{
+	println "first Last"
+}
+
+hello << {
+	println "second last"
+}

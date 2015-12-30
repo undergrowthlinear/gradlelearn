@@ -1,0 +1,7 @@
+task custom  {
+	ext.cusPro="i am a cumtom property"
+}
+
+task printCustom << {
+	println custom.cusPro
+}

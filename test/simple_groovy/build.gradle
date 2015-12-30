@@ -1,0 +1,10 @@
+task upper << {
+	String originName="qqWWrr"
+	println "Origin:"+originName
+	println "Upper:"+originName.toUpperCase() 
+}
+
+task count << {
+	4.times { print "$it "}
+	println ""
+}

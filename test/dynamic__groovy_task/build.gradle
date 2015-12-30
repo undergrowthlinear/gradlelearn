@@ -1,0 +1,7 @@
+4.times { num->
+	task "task$num" << {
+		println "i am task$num"
+	}
+}
+
+task0.dependsOn task1,task2
