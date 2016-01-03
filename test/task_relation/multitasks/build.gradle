@@ -1,0 +1,24 @@
+/**
+多个任务调用,被依赖的任务只会调用一次
+使用-x ,排除某个任务 eg: gradle dist -x test
+使用--continue ,当gradle某个任务出现问题时,不停止,最后输出错误结果 eg: gradle --continue dist
+调用任务,支持驼峰法的简写调用,eg: gradle tC
+-b,指向构建的脚本名称  eg: gradle -b E:\java_other\gradle\code\gradlelearn\test\task_relation\multitasks\build.gradle dist
+-p,指向构建的脚本文件夹 eg: gradle -p E:\java_other\gradle\code\gradlelearn\test\task_relation\multitasks dist 或者使用相对路径 gradle -p multitasks dist 
+**/
+
+task compile << {
+	println "compile source"
+}
+
+task testCompile(dependsOn:compile)<<{
+	println "compile unit test"
+}
+
+task test(dependsOn:[compile,testCompile]) << {
+	println "run unit test"
+}
+
+task dist(dependsOn:[compile,test]) << {
+	println "run code"
+}

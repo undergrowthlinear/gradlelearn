@@ -1,1 +1,8 @@
+/**
+gradle projects
+gradle tasks
+gradle dependencies
+gradle properties
+gradle build --profile
+**/
 include "shared","api","services:webservice","services:shared"

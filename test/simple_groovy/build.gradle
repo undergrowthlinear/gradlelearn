@@ -1,3 +1,47 @@
+/**
+gradle基于groovy,基于dsl(领域特定模型),utf-8编码
+gradle使用project类型关联创建的项目,当在构建脚本中未定义的方法、属性均会委托给project类型
+gradle使用script类关联创建的脚本
+声明变量--def(local)、ext(扩展)
+自动属性存取器(getter、setter)、可有可无的圆括号
+**/
+
+apply plugin: "java"
+ext {
+springVersion = "3.1.0.RELEASE"
+emailNotification = "build@master.org"
+}
+sourceSets.all { ext.purpose = null }
+sourceSets {
+	main {
+	purpose = "production"
+	}
+	test {
+	purpose = "test"
+	}
+	plugin {
+	purpose = "production"
+	}
+}
+
+task printProperties << {
+	println springVersion
+	println emailNotification
+	sourceSets.matching { it.purpose == "production" }.each { println it.name }
+}
+
+task projectDetail<< {
+	println project
+	println project.name
+	println project.path
+	println project.description
+	println project.projectDir
+	//println project.build
+	println project.version
+	println project.group
+	println project.ant
+}
+
 task upper << {
 	String originName="qqWWrr"
 	println "Origin:"+originName
@@ -8,3 +52,20 @@ task count << {
 	4.times { print "$it "}
 	println ""
 }
+
+/**
+// List 集合
+test.includes = ['org/gradle/api/**', 'org/gradle/internal/**']
+List<String> list = new ArraryList<String>()
+list.add('org/gradle/api/**')
+list.add('org/gradle/internal/**')
+test.includes = list
+// Map 集合
+Map<String,String> map = [key1:'value1', key2:'valu2']
+
+task printListMap << {
+	test.includes.each{
+	println it
+	}
+}
+**/
